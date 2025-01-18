@@ -1,0 +1,14 @@
+Function<Product, ProductDTO> function = new Function<Product, ProductDTO>() {
+            @Override
+            public ProductDTO apply(Product product) {
+                return ProductDataMapper.toDTO(product);
+            }
+        };
+
+        Function<Product, ProductDTO> inlinedFunction = (product)-> {
+            return ProductDataMapper.toDTO(product);
+        };
+
+        Function<Product, ProductDTO> inlinedFunction2 = (product)-> ProductDataMapper.toDTO(product);
+
+        Function<Product, ProductDTO> inlinedFunction3 = ProductDataMapper::toDTO;
