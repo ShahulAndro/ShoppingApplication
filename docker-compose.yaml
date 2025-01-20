@@ -1,0 +1,28 @@
+services:
+  my_postgres:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    networks:
+      - my_network
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  spring_app:
+    image: shopping-app:1.0.0
+    ports:
+      - 8081:8081
+    networks:
+      - my_network
+    depends_on:
+      - my_postgres
+networks:
+  my_network:
+    driver: bridge
+volumes:
+  postgres_data:
+    driver: local
+
