@@ -8,12 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductRequest {
-    @NotNull
+    @NotNull(message = "Product cannot be null")
     private String productName;
     private String description;
-    @NotNull
+    @NotNull(message = "Price cannot be null")
     private Double price;
-    @NotEmpty
+    @NotNull(message = "Quantity cannot be null")
     private int quantity;
     private String categoryId;
     private String sku;
