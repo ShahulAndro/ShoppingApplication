@@ -5,7 +5,7 @@ pipeline{
     environment{
         currJobName = jobName()
         imageName = "shahuljava/${currJobName}:${env.BUILD_NUMBER}"
-        dockerCredentials = 'dockerhub'
+        dockerCredentialsId = 'dockerhub'
         dockerImage = ''
     }
 
@@ -32,7 +32,7 @@ pipeline{
         stage('Deploy Image'){
             steps{
                 script{
-                    docker.withRegistry('', dockerCredentials){
+                    docker.withRegistry('', dockerCredentialsId){
                         dockerImage.push()
                         dockerImage.push('latest')
                     }
